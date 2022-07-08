@@ -2,8 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <inputwindow.h>
-#include <inputguiwindow.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -25,8 +24,7 @@ private slots:
     void on_exitApp_clicked();
 
 private:
-    InputWindow *fileUI;
-    InputGuiWindow *graficUI;
+
     Ui::MainWindow *ui;
 };
 

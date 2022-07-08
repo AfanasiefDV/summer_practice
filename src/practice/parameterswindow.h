@@ -14,6 +14,10 @@ class ParametersWindow : public QMainWindow
 public:
     explicit ParametersWindow(QWidget *parent = 0);
     ~ParametersWindow();
+signals:
+    void backToWindow();
+private slots:
+    void on_transitonGA_clicked();
 
 private:
     Ui::ParametersWindow *ui;

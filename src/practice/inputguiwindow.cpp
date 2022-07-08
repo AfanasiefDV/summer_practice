@@ -16,7 +16,7 @@ InputGuiWindow::~InputGuiWindow()
 void InputGuiWindow::on_back_triggered()
 {
     this->close();
-    emit backToWindow();
+    //emit backToWindow();
 }
 
 void InputGuiWindow::on_exit_triggered()
@@ -25,6 +25,11 @@ void InputGuiWindow::on_exit_triggered()
 }
 
 void InputGuiWindow::on_about_triggered()
+{
+
+}
+
+void InputGuiWindow::on_transtionPar1_clicked()
 {
 
 }

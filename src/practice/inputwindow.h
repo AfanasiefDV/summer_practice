@@ -24,6 +24,8 @@ private slots:
 
     void on_about_triggered();
 
+    void on_transtionPar2_clicked();
+
 private:
     Ui::InputWindow *ui;
 };

@@ -12,3 +12,8 @@ ParametersWindow::~ParametersWindow()
 {
     delete ui;
 }
+
+void ParametersWindow::on_transitonGA_clicked()
+{
+
+}
