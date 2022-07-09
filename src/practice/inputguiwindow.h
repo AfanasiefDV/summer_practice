@@ -16,6 +16,7 @@ public:
     ~InputGuiWindow();
 signals:
     void backToWindow();
+    void toParamWindow();
 
 private slots:
     void on_back_triggered();

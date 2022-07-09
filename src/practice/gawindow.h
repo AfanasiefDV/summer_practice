@@ -16,12 +16,21 @@ public:
     ~GAWindow();
 signals:
     void backToWindow();
+    void toBack();
+    void toNext();
+    void toSolution();
 private slots:
     void on_back_triggered();
 
     void on_exit_triggered();
 
     void on_about_triggered();
+
+    void on_prevStep_clicked();
+
+    void on_nextStep_clicked();
+
+    void on_solution_clicked();
 
 private:
     Ui::GAWindow *ui;

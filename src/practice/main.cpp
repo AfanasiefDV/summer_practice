@@ -10,21 +10,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow* view = new MainWindow();
-    InputWindow *fileUI;
-    InputGuiWindow *graphicUI;
-    ParametersWindow *parUI;
-    GAWindow *gaUI;
+    InputWindow *fileUI = new InputWindow();
+    InputGuiWindow *graphicUI = new InputGuiWindow();
+    ParametersWindow *parUI = new ParametersWindow();
+    GAWindow *gaUI = new GAWindow();
     Presenter* presenter = new Presenter(view, fileUI, graphicUI, parUI, gaUI);
 
     Q_UNUSED(presenter);
     view->show();
 
-
-    delete fileUI;
-    delete graphicUI;
-    delete parUI;
-    delete gaUI;
-    delete ui;
-    delete presenter;
     return a.exec();
 }

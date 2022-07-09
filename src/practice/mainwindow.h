@@ -14,7 +14,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+signals:
+    void guiInput();
+    void fileInput();
 private slots:
 
     void on_guiInput_clicked();

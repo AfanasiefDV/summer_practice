@@ -25,6 +25,16 @@ private:
 signals:
 
 public slots:
+
+private slots:
+    void transitFileWindow();
+    void transitGUIWindow();
+    void backMainWindow();
+    void transitParWindow();
+    void transitGAWindow();
+    void nextStep();
+    void backStep();
+    void transitToSolution();
 };
 
 #endif // PRESENTER_H

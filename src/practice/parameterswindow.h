@@ -16,8 +16,15 @@ public:
     ~ParametersWindow();
 signals:
     void backToWindow();
+    void toGAWindow();
 private slots:
     void on_transitonGA_clicked();
+
+    void on_back_triggered();
+
+    void on_exit_triggered();
+
+    void on_about_triggered();
 
 private:
     Ui::ParametersWindow *ui;

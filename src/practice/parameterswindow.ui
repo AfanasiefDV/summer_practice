@@ -164,24 +164,24 @@
     <property name="title">
      <string>Основные</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="action_2"/>
+    <addaction name="back"/>
+    <addaction name="exit"/>
     <addaction name="separator"/>
-    <addaction name="action_4"/>
+    <addaction name="about"/>
    </widget>
    <addaction name="menu"/>
   </widget>
-  <action name="action">
+  <action name="back">
    <property name="text">
     <string>Вернуться в главное меню</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="exit">
    <property name="text">
     <string>Выйти</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="about">
    <property name="text">
     <string>О программе</string>
    </property>

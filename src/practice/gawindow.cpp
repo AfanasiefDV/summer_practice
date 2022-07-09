@@ -27,3 +27,18 @@ void GAWindow::on_about_triggered()
 {
 
 }
+
+void GAWindow::on_prevStep_clicked()
+{
+
+}
+
+void GAWindow::on_nextStep_clicked()
+{
+
+}
+
+void GAWindow::on_solution_clicked()
+{
+
+}
