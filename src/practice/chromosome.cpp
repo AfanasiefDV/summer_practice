@@ -1,13 +1,13 @@
 #include "chromosome.h"
 
-Chromosome::Chromosome(const DataGA& data) : data(data)
+Chromosome::Chromosome(const DataGA data) : data(data)
 {
     for(int i = 0; i < data.getItems().size(); i++ )
         genes.push_back(rand()%2);
     this->correction();
 }
 
-Chromosome::Chromosome(const DataGA& data, std::vector<bool> parent1, std::vector<bool> parent2): Chromosome(data){
+Chromosome::Chromosome(const DataGA data, std::vector<bool> parent1, std::vector<bool> parent2): Chromosome(data){
     for(int i = 0; i < parent1.size()/2; i++){
         genes.push_back(parent1[i]);
     }

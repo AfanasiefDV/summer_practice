@@ -15,8 +15,7 @@ InputGuiWindow::~InputGuiWindow()
 
 void InputGuiWindow::on_back_triggered()
 {
-    this->close();
-    //emit backToWindow();
+    emit backToWindow();
 }
 
 void InputGuiWindow::on_exit_triggered()
@@ -31,5 +30,20 @@ void InputGuiWindow::on_about_triggered()
 
 void InputGuiWindow::on_transtionPar1_clicked()
 {
-
+    qDebug() << ui->CapacityBox->value();
+    qDebug() << ui->ItemsBox->toPlainText();
+    emit toParamWindow();
 }
+
+int InputGuiWindow::getCapacity(){
+    return ui->CapacityBox->value();
+}
+
+int InputGuiWindow::getQuantityItems(){
+    return ui->quantityItemsBox->value();
+}
+
+QString InputGuiWindow::getItems(){
+    return ui->ItemsBox->toPlainText();
+}
+

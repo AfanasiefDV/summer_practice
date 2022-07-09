@@ -14,8 +14,7 @@ InputWindow::~InputWindow()
 }
 void InputWindow::on_back_triggered()
 {
-    this->close();
-    //emit backToWindow();
+    emit backToWindow();
 }
 
 void InputWindow::on_exit_triggered()
@@ -30,5 +29,5 @@ void InputWindow::on_about_triggered()
 
 void InputWindow::on_transtionPar2_clicked()
 {
-
+    emit toParamWindow();
 }

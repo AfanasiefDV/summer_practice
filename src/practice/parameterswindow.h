@@ -14,6 +14,10 @@ class ParametersWindow : public QMainWindow
 public:
     explicit ParametersWindow(QWidget *parent = 0);
     ~ParametersWindow();
+    int getPopulation();
+    int getSelectionQuantity();
+    int getSeed();
+    float getProbabilty();
 signals:
     void backToWindow();
     void toGAWindow();
@@ -25,6 +29,10 @@ private slots:
     void on_exit_triggered();
 
     void on_about_triggered();
+
+    void on_quantityPopulation_clicked();
+
+    void on_quantityConstPopulation_clicked();
 
 private:
     Ui::ParametersWindow *ui;

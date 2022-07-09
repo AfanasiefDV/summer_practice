@@ -2,7 +2,8 @@
 #define INPUTGUIWINDOW_H
 
 #include <QMainWindow>
-
+#include <QDebug>
+#include <QString>
 namespace Ui {
 class InputGuiWindow;
 }
@@ -14,6 +15,9 @@ class InputGuiWindow : public QMainWindow
 public:
     explicit InputGuiWindow(QWidget *parent = 0);
     ~InputGuiWindow();
+    int getCapacity();
+    int getQuantityItems();
+    QString getItems();
 signals:
     void backToWindow();
     void toParamWindow();

@@ -1,6 +1,7 @@
 #include "ga.h"
 
-GA::GA(const DataGA& data) : data(data){
+GA::GA(){}
+GA::GA(const DataGA data) : data(data){
     for(int i = 0; i < data.getSizePopulation(); i++)
         population.push_back(Chromosome(data));
 }

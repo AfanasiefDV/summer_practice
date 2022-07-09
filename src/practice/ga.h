@@ -9,12 +9,13 @@
 
 class GA
 {
-    const DataGA& data;
+    const DataGA data;
     std::vector<Chromosome> population, child;
     std::vector<int> inSelection;
     void pick();
 public:
-    GA(const DataGA& data);
+    GA(const DataGA data);
+    GA();
     void selection();
     void mutation();
     void crossing();

@@ -1,10 +1,10 @@
 #include "presenter.h"
-
+#include <QDebug>
 Presenter::Presenter(MainWindow* view, InputWindow *fileUI, InputGuiWindow *graphicUI, ParametersWindow *parUI, GAWindow *gaUI, QObject *parent) :view(view), fileUI(fileUI), graphicUI(graphicUI), parUI(parUI), gaUI(gaUI),model(new Model()), QObject(parent)
 {
     // main
-    connect(view, SIGNAL(guiInput()), this, SLOT(transitFileWindow()));
-    connect(view, SIGNAL(fileInput()), this, SLOT(transitGUIWindow()));
+    connect(view, SIGNAL(guiInput()), this, SLOT(transitGUIWindow()));
+    connect(view, SIGNAL(fileInput()), this, SLOT(transitFileWindow()));
 
     //file
     connect(fileUI, SIGNAL(backToWindow()), this, SLOT(backMainWindow()));
@@ -42,15 +42,28 @@ void Presenter::transitGUIWindow(){
 }
 
 void Presenter::backMainWindow(){
-
+    QMainWindow* sen = qobject_cast<QMainWindow*>(sender());
+    sen->close();
+    view->show();
 }
 
 void Presenter::transitParWindow(){
+    bool isCorrect = false;
+    if(graphicUI->isVisible()){
+        isCorrect = model->setTaskParametrs(graphicUI->getCapacity(),graphicUI->getQuantityItems(),graphicUI->getItems());
+    }
 
+    if(isCorrect){
+        QMainWindow* sen = qobject_cast<QMainWindow*>(sender());
+        sen->close();
+        parUI->show();
+    }
 }
 
 void Presenter::transitGAWindow(){
-
+    bool isCorrect = false;
+    parUI->close();
+    gaUI->show();
 }
 
 void Presenter::nextStep(){

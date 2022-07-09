@@ -15,12 +15,12 @@ GAWindow::~GAWindow()
 
 void GAWindow::on_back_triggered()
 {
-
+    emit backToWindow();
 }
 
 void GAWindow::on_exit_triggered()
 {
-
+    qApp->exit();
 }
 
 void GAWindow::on_about_triggered()
@@ -30,15 +30,15 @@ void GAWindow::on_about_triggered()
 
 void GAWindow::on_prevStep_clicked()
 {
-
+    emit toBack();
 }
 
 void GAWindow::on_nextStep_clicked()
 {
-
+    emit toNext();
 }
 
 void GAWindow::on_solution_clicked()
 {
-
+    emit toSolution();
 }
