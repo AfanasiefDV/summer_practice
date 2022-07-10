@@ -53,3 +53,22 @@ float DataGA::getProbabilityMutation() const{
 const std::vector<std::pair<unsigned int, unsigned int>>& DataGA::getItems() const{
     return this->items;
 }
+
+void DataGA::setQuantityPopulationEnd(unsigned int quantity){
+    quantityPopulationEnd = quantity;
+}
+
+void DataGA::setTypeEnd(int type){
+    if(type){
+        ends = typesEnd::constPopulation;
+    }else{
+        ends = typesEnd::Population;
+    }
+}
+
+unsigned int DataGA::getQuantityPopulationEnd() const{
+    return quantityPopulationEnd;
+}
+typesEnd DataGA::getTypeEnd() const{
+    return ends;
+}

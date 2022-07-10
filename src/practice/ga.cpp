@@ -1,22 +1,22 @@
 #include "ga.h"
 
 GA::GA(){}
-GA::GA(const DataGA data) : data(data){
-    for(int i = 0; i < data.getSizePopulation(); i++)
+GA::GA(const DataGA* data) : data(data){
+    for(int i = 0; i < data->getSizePopulation(); i++)
         population.push_back(Chromosome(data));
 }
 
 void GA::selection(){
     inSelection.clear();
-    for(int i = 0; i < data.getSizePopulation(); i++){
+    for(int i = 0; i < data->getSizePopulation(); i++){
         pick();
     }
 }
 
 void GA::pick(){
     unsigned int index = 0,  maxFitness = 0;
-    for(int i = 0; i < data.getSizePopulation(); i++){
-        unsigned int newIndex = rand()%data.getSizePopulation();
+    for(int i = 0; i < data->getSizePopulation(); i++){
+        unsigned int newIndex = rand()%data->getSizePopulation();
         unsigned int newMaxFitness = population[newIndex].fitnessFunction();
         if(newMaxFitness > maxFitness){
             index = newIndex;
@@ -27,7 +27,7 @@ void GA::pick(){
 }
 
 void GA::mutation(){
-    for(int i = 0; i < data.getSizePopulation(); i++)
+    for(int i = 0; i < data->getSizePopulation(); i++)
         child[i].mutation();
 }
 
@@ -51,4 +51,12 @@ void GA::transfer(){
     child.clear();
     inSelection.clear();
 
+}
+
+std::vector<Chromosome> GA::getPopulation(){
+    return population;
+}
+
+std::vector<Chromosome> GA::getChild(){
+    return child;
 }

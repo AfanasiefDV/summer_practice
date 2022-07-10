@@ -30,8 +30,6 @@ void InputGuiWindow::on_about_triggered()
 
 void InputGuiWindow::on_transtionPar1_clicked()
 {
-    qDebug() << ui->CapacityBox->value();
-    qDebug() << ui->ItemsBox->toPlainText();
     emit toParamWindow();
 }
 

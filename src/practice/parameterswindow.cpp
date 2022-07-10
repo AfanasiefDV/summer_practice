@@ -1,6 +1,6 @@
 #include "parameterswindow.h"
 #include "ui_parameterswindow.h"
-
+#include <QDebug>
 ParametersWindow::ParametersWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ParametersWindow)
@@ -42,12 +42,21 @@ int ParametersWindow::getSelectionQuantity(){
     return ui->quantityBox->value();
 }
 
-int ParametersWindow::getSeed(){
-    return ui->seedBox->value();
+std::pair<bool, unsigned int>  ParametersWindow::getSeed(){
+    return std::make_pair(ui->defaultSeed->isChecked(), ui->seedBox->value());
 }
 
 float ParametersWindow::getProbabilty(){
     return ui->ProbabilityBox->value();
+}
+
+std::pair<unsigned int, unsigned int> ParametersWindow::getTypeEnd(){
+    int type = 0;
+    if(ui->quantityConstPopulation->isChecked()){
+        type++;
+    }
+
+    return std::make_pair(type, ui->endValue->value());
 }
 
 void ParametersWindow::on_quantityPopulation_clicked()
@@ -58,4 +67,14 @@ void ParametersWindow::on_quantityPopulation_clicked()
 void ParametersWindow::on_quantityConstPopulation_clicked()
 {
     ui->quantityPopulation->setChecked(false);
+}
+
+void ParametersWindow::on_defaultSeed_clicked()
+{
+    if(ui->defaultSeed->isChecked()){
+        ui->seedBox->setHidden(true);
+    }
+    else{
+        ui->seedBox->setHidden(false);
+    }
 }

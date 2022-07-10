@@ -2,7 +2,7 @@
 #define PARAMETERSWINDOW_H
 
 #include <QMainWindow>
-
+#include <utility>
 namespace Ui {
 class ParametersWindow;
 }
@@ -16,8 +16,10 @@ public:
     ~ParametersWindow();
     int getPopulation();
     int getSelectionQuantity();
-    int getSeed();
+    std::pair<bool, unsigned int> getSeed();
     float getProbabilty();
+    std::pair<unsigned int, unsigned int> getTypeEnd();
+
 signals:
     void backToWindow();
     void toGAWindow();
@@ -33,6 +35,8 @@ private slots:
     void on_quantityPopulation_clicked();
 
     void on_quantityConstPopulation_clicked();
+
+    void on_defaultSeed_clicked();
 
 private:
     Ui::ParametersWindow *ui;

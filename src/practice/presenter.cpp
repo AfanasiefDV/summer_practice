@@ -45,6 +45,7 @@ void Presenter::backMainWindow(){
     QMainWindow* sen = qobject_cast<QMainWindow*>(sender());
     sen->close();
     view->show();
+    model->drop();
 }
 
 void Presenter::transitParWindow(){
@@ -61,9 +62,12 @@ void Presenter::transitParWindow(){
 }
 
 void Presenter::transitGAWindow(){
-    bool isCorrect = false;
-    parUI->close();
-    gaUI->show();
+    bool isCorrect = model->setGAParametrs(parUI->getPopulation(), parUI->getSelectionQuantity(), parUI->getProbabilty(), parUI->getSeed(), parUI->getTypeEnd() );
+    if(isCorrect){
+        parUI->close();
+        gaUI->show();
+        model->setGA();
+    }
 }
 
 void Presenter::nextStep(){

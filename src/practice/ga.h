@@ -9,17 +9,19 @@
 
 class GA
 {
-    const DataGA data;
+    const DataGA* data;
     std::vector<Chromosome> population, child;
     std::vector<int> inSelection;
     void pick();
 public:
-    GA(const DataGA data);
+    GA(const DataGA* data);
     GA();
     void selection();
     void mutation();
     void crossing();
     void transfer();
+    std::vector<Chromosome> getPopulation();
+    std::vector<Chromosome> getChild();
 };
 
 #endif // GA_H

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     dataga.cpp \
     gawindow.cpp \
     presenter.cpp \
-    model.cpp
+    model.cpp \
+    problemsolve.cpp
 
 HEADERS  += mainwindow.h \
     chromosome.h \
@@ -33,7 +34,9 @@ HEADERS  += mainwindow.h \
     dataga.h \
     gawindow.h \
     presenter.h \
-    model.h
+    model.h \
+    problemsolve.h \
+    datastruct.h
 
 FORMS    += mainwindow.ui \
     inputwindow.ui \
