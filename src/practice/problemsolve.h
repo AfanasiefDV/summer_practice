@@ -3,22 +3,25 @@
 #include <vector>
 #include "ga.h"
 #include "dataga.h"
+#include "datastruct.h"
 #include "chromosome.h"
 
 class ProblemSolve
 {
-    std::vector<std::pair<std::vector<Chromosome>,std::vector<Chromosome>>> allPopulation;
     GA* ga;
     const DataGA* data;
+    std::vector<ViewData> allPopulation;
     bool isEnd();
     unsigned int quantityConstPopulation;
     unsigned int currentStep;
 public:
     ProblemSolve();
+    ~ProblemSolve();
     ProblemSolve(const DataGA* data);
-    void nextStep();
-    void prevStep();
-    void endSolution();
+    ViewData nextStep();
+    ViewData prevStep();
+    ViewData endSolution();
+    void init();
 
 };
 

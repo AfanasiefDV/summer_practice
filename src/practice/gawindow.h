@@ -1,7 +1,8 @@
 #ifndef GAWINDOW_H
 #define GAWINDOW_H
-
+#include "datastruct.h"
 #include <QMainWindow>
+#include <QString>
 
 namespace Ui {
 class GAWindow;
@@ -14,6 +15,7 @@ class GAWindow : public QMainWindow
 public:
     explicit GAWindow(QWidget *parent = 0);
     ~GAWindow();
+    void updateView(ViewData data);
 signals:
     void backToWindow();
     void toBack();

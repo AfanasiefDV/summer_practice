@@ -22,10 +22,14 @@ bool Model::setTaskParametrs(int capacity, int quantity, QString items){
         itemsGA.push_back(std::make_pair<unsigned int, unsigned int>(coast, weight));
     }
    data->setItems(itemsGA);
+   qDebug() << QString::number(itemsGA.size()) << "\n";
+
    return true;
 }
 
 bool Model::setGAParametrs(unsigned int population, unsigned int selectQuantity, float probability, std::pair<bool, unsigned int> seed, std::pair<unsigned int, unsigned int> typeEnd ){
+
+    qDebug() << QString::number(data->getItems().size()) << "\n";
     if((population/2) < selectQuantity){
         return false;
     }
@@ -44,9 +48,17 @@ void Model::setGA(){
     algorithm = new ProblemSolve(data);
 }
 void Model::drop(){
-    delete algorithm;
-    delete data;
-    data = new DataGA();
-    algorithm = new ProblemSolve();
+    //delete algorithm;
+    //delete data;
+    //data = new DataGA();
+    //algorithm = new ProblemSolve();
+}
 
+ViewData Model::action(TypeStep step){
+    qDebug() << "model\n";
+    if(step == TypeStep::next){
+        ViewData a = algorithm->nextStep();
+        qDebug() << "model ret\n";
+        return a;
+    }
 }

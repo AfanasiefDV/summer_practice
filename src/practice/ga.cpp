@@ -1,5 +1,5 @@
 #include "ga.h"
-
+#include <QDebug>
 GA::GA(){}
 GA::GA(const DataGA* data) : data(data){
     for(int i = 0; i < data->getSizePopulation(); i++)
@@ -26,24 +26,34 @@ void GA::pick(){
     inSelection.push_back(index);
 }
 
-void GA::mutation(){
-    for(int i = 0; i < data->getSizePopulation(); i++)
-        child[i].mutation();
-}
-
-void GA::crossing(){
-    while(!inSelection.empty()){
-        int i = rand()%inSelection.size();
-        int j = rand()%inSelection.size();
-        child.push_back(Chromosome(data, population[inSelection[i]].getGenes(),population[inSelection[j]].getGenes()));
-        child.push_back(Chromosome(data, population[inSelection[j]].getGenes(),population[inSelection[i]].getGenes()));
-        if(i == j)
-            inSelection.erase(inSelection.begin()+i);
-        else{
-            inSelection.erase(inSelection.begin()+i);
-            inSelection.erase(inSelection.begin()+j);
+std::vector<std::pair<unsigned int, unsigned int>> GA::mutation(){
+    std::vector<std::pair<unsigned int, unsigned int>> vec;
+    for(int i = 0; i < child.size(); i++){
+        int value = child[i].mutation();
+        if(value >= 0){
+            vec.push_back(std::make_pair(i, value));
         }
     }
+    return vec;
+}
+
+std::vector<std::pair<unsigned int, unsigned int>> GA::crossing(){
+    std::vector<std::pair<unsigned int, unsigned int>> vec;
+    while(vec.size() != data->getSizePopulation()){
+        int i = rand()%inSelection.size();
+        int j = rand()%inSelection.size();
+        if(i != j){
+            child.push_back(Chromosome(data, population[inSelection[i]].getGenes(),population[inSelection[j]].getGenes()));
+            child.push_back(Chromosome(data, population[inSelection[j]].getGenes(),population[inSelection[i]].getGenes()));
+            qDebug() << "createDone\n";
+
+
+            vec.push_back(std::make_pair(inSelection[i], inSelection[j]));
+            //inSelection.erase(inSelection.begin()+i);
+            //inSelection.erase(inSelection.begin()+j);
+        }
+    }
+    return vec;
 }
 
 void GA::transfer(){
@@ -59,4 +69,21 @@ std::vector<Chromosome> GA::getPopulation(){
 
 std::vector<Chromosome> GA::getChild(){
     return child;
+}
+
+std::pair<unsigned int, std::vector<unsigned int>> GA::maxFitnes(){
+    unsigned int max = 0;
+    std::vector<unsigned int> index;
+    for(int i = 0; i < population.size();i++){
+        unsigned int fitnes = population[i].fitnessFunction();
+        if(max < fitnes){
+            max = fitnes;
+            index.clear();
+            index.push_back(i);
+        }
+        else if(max == fitnes){
+            index.push_back(i);
+        }
+    }
+    return std::make_pair(max, index);
 }

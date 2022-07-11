@@ -71,13 +71,19 @@ void Presenter::transitGAWindow(){
 }
 
 void Presenter::nextStep(){
-
+    qDebug()<<"presen\n";
+    ViewData data = model->action(TypeStep::next);
+    qDebug()<<"ret pres\n";
+    gaUI->updateView(data);
 }
 
 void Presenter::backStep(){
-
+    ViewData data = model->action(TypeStep::prev);
+    gaUI->updateView(data);
 }
 
 void Presenter::transitToSolution(){
+    ViewData data = model->action(TypeStep::end);
+    gaUI->updateView(data);
 
 }

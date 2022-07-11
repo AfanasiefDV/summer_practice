@@ -16,9 +16,10 @@ class GA
 public:
     GA(const DataGA* data);
     GA();
+    std::pair<unsigned int, std::vector<unsigned int>> maxFitnes();
     void selection();
-    void mutation();
-    void crossing();
+    std::vector<std::pair<unsigned int, unsigned int>> mutation();
+    std::vector<std::pair<unsigned int, unsigned int>> crossing();
     void transfer();
     std::vector<Chromosome> getPopulation();
     std::vector<Chromosome> getChild();
