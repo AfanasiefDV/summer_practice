@@ -11,11 +11,11 @@ void DataGA::setSizePopulation(unsigned int sizePopulation){
 }
 
 void DataGA::setCapacity(unsigned int capacity){
-    this->capacity;
+    this->capacity = capacity;
 }
 
 void DataGA::setSeed(unsigned int seed){
-    this->seed;
+    this->seed =seed;
 }
 
 void DataGA::setNumIndividualsSelection(unsigned int numIndividualsSelection){
