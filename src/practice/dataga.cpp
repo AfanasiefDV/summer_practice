@@ -27,7 +27,7 @@ void DataGA::setProbabilityMutation(float probabilityMutation){
 }
 
 void DataGA::setItems(std::vector<std::pair<unsigned int, unsigned int>> items){
-    this->items;
+    this->items = items;
 }
 
 unsigned int DataGA::getSizePopulation() const{

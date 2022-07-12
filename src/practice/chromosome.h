@@ -1,6 +1,7 @@
 #ifndef CHROMOSOME_H
 #define CHROMOSOME_H
 #include <vector>
+#include <QString>
 #include "dataga.h"
 class Chromosome
 {
@@ -15,6 +16,7 @@ public:
     int mutation();
     bool isAcceptable();
     std::vector<bool> getGenes();
+    QString getStr();
 };
 
 #endif // CHROMOSOME_H

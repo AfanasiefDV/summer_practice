@@ -8,6 +8,8 @@
 #include<QStringList>
 #include <vector>
 #include <utility>
+#include <QTextStream>
+#include <QFile>
 
 enum TypeStep{
     next,
@@ -27,9 +29,10 @@ public:
     ~Model();
     bool setTaskParametrs(int capacity, int quantity, QString items);
     bool setGAParametrs(unsigned int population, unsigned int selectQuantity, float probability, std::pair<bool, unsigned int> seed, std::pair<unsigned int, unsigned int> typeEnd );
+    bool setTaskParametrsFile(QString path);
     void setGA();
     void drop();
-    ViewData action(TypeStep step);
+    std::pair<bool,ViewData> action(TypeStep step);
 };
 
 #endif // MODEL_H

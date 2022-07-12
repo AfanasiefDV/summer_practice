@@ -11,16 +11,16 @@ class ProblemSolve
     GA* ga;
     const DataGA* data;
     std::vector<ViewData> allPopulation;
-    bool isEnd();
     unsigned int quantityConstPopulation;
     unsigned int currentStep;
 public:
     ProblemSolve();
     ~ProblemSolve();
     ProblemSolve(const DataGA* data);
-    ViewData nextStep();
-    ViewData prevStep();
-    ViewData endSolution();
+    bool isEnd();
+    std::pair<bool,ViewData> nextStep();
+    std::pair<bool,ViewData>  prevStep();
+    std::pair<bool,ViewData> endSolution();
     void init();
 
 };

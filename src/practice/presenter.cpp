@@ -53,6 +53,9 @@ void Presenter::transitParWindow(){
     if(graphicUI->isVisible()){
         isCorrect = model->setTaskParametrs(graphicUI->getCapacity(),graphicUI->getQuantityItems(),graphicUI->getItems());
     }
+    else if(fileUI->isVisible()){
+        isCorrect = model->setTaskParametrsFile(fileUI->getFilePath());
+    }
 
     if(isCorrect){
         QMainWindow* sen = qobject_cast<QMainWindow*>(sender());
@@ -66,24 +69,40 @@ void Presenter::transitGAWindow(){
     if(isCorrect){
         parUI->close();
         gaUI->show();
+        gaUI->blockPrev(true);
         model->setGA();
     }
 }
 
 void Presenter::nextStep(){
-    qDebug()<<"presen\n";
-    ViewData data = model->action(TypeStep::next);
-    qDebug()<<"ret pres\n";
-    gaUI->updateView(data);
+    std::pair<bool, ViewData> data = model->action(TypeStep::next);
+    if(data.first){
+        gaUI->updateView(data.second);
+        gaUI->blockPrev(!data.first);
+    }
+    else{
+        gaUI->blockNext(!data.first);
+        gaUI->blockPrev(data.first);
+    }
 }
 
 void Presenter::backStep(){
-    ViewData data = model->action(TypeStep::prev);
-    gaUI->updateView(data);
+    std::pair<bool, ViewData> data = model->action(TypeStep::prev);
+    qDebug() << "2\n";
+    if(data.first){
+        gaUI->updateView(data.second);
+        gaUI->blockNext(!data.first);
+    }
+    else{
+        gaUI->blockPrev(!data.first);
+        gaUI->blockNext(data.first);
+    }
+
 }
 
 void Presenter::transitToSolution(){
-    ViewData data = model->action(TypeStep::end);
-    gaUI->updateView(data);
+    std::pair<bool, ViewData> data = model->action(TypeStep::end);
+    gaUI->updateView(data.second);
+    gaUI->blockNext(true);
 
 }

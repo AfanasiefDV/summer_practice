@@ -21,58 +21,58 @@ bool ProblemSolve::isEnd(){
         return false;
     }
     else if(data->getTypeEnd() == typesEnd::constPopulation){
-        return true;
+        if(allPopulation.size() >= data->getQuantityPopulationEnd()){
+            for(int i = currentStep; i >= currentStep-data->getQuantityPopulationEnd(); i--){
+                if(allPopulation[i].maxFitnes.first != allPopulation[currentStep].maxFitnes.first ){
+                    return false;
+                }
+            }
+            return true;
+        }
+        else{
+            return true;
+        }
     }
+    return false;
 }
 
-ViewData ProblemSolve::nextStep(){
-    bool isCorrect = false;
+std::pair<bool,ViewData>  ProblemSolve::nextStep(){
     if(currentStep != allPopulation.size()){
         currentStep++;
-        isCorrect = true;
+        return std::make_pair(true, allPopulation[currentStep-1]);
     }else{
         if(!isEnd()){
-            qDebug() << "1\n";
             ViewData curPopulation;
-            qDebug() << "2\n";
             curPopulation.maxFitnes = ga->maxFitnes();
-            qDebug() << "3\n";
             curPopulation.population = ga->getPopulation();
-            qDebug() << "4\n";
             ga->selection();
-            qDebug() << "5\n";
             curPopulation.crossing = ga->crossing();
-            qDebug() << "6\n";
             curPopulation.mutations = ga->mutation();
-            qDebug() << "7\n";
             curPopulation.child = ga->getChild();
-            qDebug() << "8\n";
             currentStep++;
             ga->transfer();
-            qDebug() << "9\n";
-            isCorrect = true;
-            qDebug() << "10\n";
+            curPopulation.step = currentStep;
             allPopulation.push_back(curPopulation);
+            return std::make_pair(true, allPopulation[currentStep-1]);
         }
 
     }
-    qDebug() << "next\n";
-    return allPopulation[currentStep-1];
+    return std::make_pair(false,allPopulation[allPopulation.size()-1]);
 }
 
-ViewData ProblemSolve::prevStep(){
-    bool isCorrect = false;
-    if(currentStep >= 0){
-        currentStep--;
-        isCorrect = true;
-
+std::pair<bool,ViewData> ProblemSolve::prevStep(){
+    currentStep--;
+    if(currentStep > 1){
+        qDebug() << "1\n" << QString::number(currentStep-1);
+        return std::make_pair(true, allPopulation[currentStep-1]);
     }
-    return allPopulation[currentStep];
-}
-void ProblemSolve::init(){
+    else{
 
+        return std::make_pair(false,allPopulation[currentStep]);
+    }
 }
 
-ViewData ProblemSolve::endSolution(){
-    return allPopulation[currentStep];
+std::pair<bool,ViewData> ProblemSolve::endSolution(){
+    while(nextStep().first){}
+    return std::make_pair(true, allPopulation[currentStep-1]);
 }

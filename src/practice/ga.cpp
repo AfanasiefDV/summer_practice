@@ -39,25 +39,20 @@ std::vector<std::pair<unsigned int, unsigned int>> GA::mutation(){
 
 std::vector<std::pair<unsigned int, unsigned int>> GA::crossing(){
     std::vector<std::pair<unsigned int, unsigned int>> vec;
-    while(vec.size() != data->getSizePopulation()){
+    while(2*vec.size() != data->getSizePopulation()){
         int i = rand()%inSelection.size();
         int j = rand()%inSelection.size();
         if(i != j){
             child.push_back(Chromosome(data, population[inSelection[i]].getGenes(),population[inSelection[j]].getGenes()));
             child.push_back(Chromosome(data, population[inSelection[j]].getGenes(),population[inSelection[i]].getGenes()));
-            qDebug() << "createDone\n";
-
-
             vec.push_back(std::make_pair(inSelection[i], inSelection[j]));
-            //inSelection.erase(inSelection.begin()+i);
-            //inSelection.erase(inSelection.begin()+j);
         }
     }
     return vec;
 }
 
 void GA::transfer(){
-    population = std::move(child);
+    population = child;
     child.clear();
     inSelection.clear();
 

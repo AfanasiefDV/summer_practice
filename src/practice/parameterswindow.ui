@@ -33,6 +33,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimum">
+       <number>6</number>
+      </property>
      </widget>
     </item>
     <item row="14" column="2">
@@ -126,7 +129,14 @@
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QSpinBox" name="quantityBox"/>
+     <widget class="QSpinBox" name="quantityBox">
+      <property name="minimum">
+       <number>2</number>
+      </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+     </widget>
     </item>
     <item row="5" column="1">
      <widget class="QDoubleSpinBox" name="ProbabilityBox">
@@ -138,6 +148,9 @@
       </property>
       <property name="maximum">
        <double>1.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.020000000000000</double>
       </property>
      </widget>
     </item>
@@ -174,7 +187,7 @@
     <item row="12" column="0" colspan="2">
      <widget class="QSpinBox" name="endValue">
       <property name="minimum">
-       <number>1</number>
+       <number>10</number>
       </property>
       <property name="maximum">
        <number>200</number>

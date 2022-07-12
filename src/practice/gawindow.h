@@ -3,7 +3,11 @@
 #include "datastruct.h"
 #include <QMainWindow>
 #include <QString>
-
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QWidget>
+#include <vector>
 namespace Ui {
 class GAWindow;
 }
@@ -11,11 +15,17 @@ class GAWindow;
 class GAWindow : public QMainWindow
 {
     Q_OBJECT
-
+    QHBoxLayout *results;
+    QVBoxLayout *population;
+    std::vector<QLabel*> genes, genesChild;
+    QVBoxLayout *child;
+    bool flag =true;
 public:
     explicit GAWindow(QWidget *parent = 0);
     ~GAWindow();
     void updateView(ViewData data);
+    void blockPrev(bool isBlock);
+    void blockNext(bool isBlock);
 signals:
     void backToWindow();
     void toBack();

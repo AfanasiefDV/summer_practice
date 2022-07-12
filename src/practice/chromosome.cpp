@@ -22,13 +22,15 @@ Chromosome::Chromosome(const DataGA* data, std::vector<bool> parent1, std::vecto
 unsigned int Chromosome::fitnessFunction(){
     unsigned int value = 0;
     const std::vector<std::pair<unsigned int, unsigned int>>& items = data->getItems();
-    for(int i = 0; i < items.size(); i++)
-        value += genes[i]*items[i].first;
+    for(int i = 0; i < items.size(); i++){
+        if(genes[i]){
+            value += items[i].first;
+        }
+    }
     return value;
 }
 
 void Chromosome::correction(){
-
     while(!isAcceptable()){
         int randValue = rand()%genes.size();
         genes[randValue] = 0;
@@ -37,17 +39,9 @@ void Chromosome::correction(){
 
 int Chromosome::mutation(){
     int randValue = -1;
-    qDebug() << "er1\n";
     if(rand()%101 < data->getProbabilityMutation()*100){
-
-        qDebug() << "er2 \n" << genes.size();
-        int a = rand()%genes.size();
-        qDebug() << "a\n" << a;
-        randValue = a;
-        qDebug() << genes.size() << " " << randValue << "\n";
+        randValue = rand()%genes.size();
         genes[randValue] = !genes[randValue];
-
-        qDebug() << "er3\n";
         correction();
     }
     return randValue;
@@ -56,10 +50,19 @@ int Chromosome::mutation(){
 bool Chromosome::isAcceptable(){
     unsigned int value = 0;
     const std::vector<std::pair<unsigned int, unsigned int>>& items = data->getItems();
-    for(int i = 0; i < items.size(); i++)
-        value += genes[i]*items[i].second;
+    for(int i = 0; i < items.size(); i++){
+        if(genes[i]){
+            value += items[i].second;
+        }
+    }
     return value <= data->getCapacity();
 }
 std::vector<bool> Chromosome::getGenes(){
     return genes;
+}
+QString Chromosome::getStr(){
+    QString str = "";
+    for(int i = 0; i < genes.size(); i++)
+        str += QString::number(genes[i]);
+    return str;
 }

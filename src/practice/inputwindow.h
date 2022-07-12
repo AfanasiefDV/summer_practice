@@ -2,7 +2,7 @@
 #define INPUTWINDOW_H
 
 #include <QMainWindow>
-
+#include <QString>
 namespace Ui {
 class InputWindow;
 }
@@ -13,6 +13,7 @@ class InputWindow : public QMainWindow
 
 public:
     explicit InputWindow(QWidget *parent = 0);
+    QString getFilePath();
     ~InputWindow();
 signals:
     void backToWindow();
