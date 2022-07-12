@@ -2,8 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <inputwindow.h>
-#include <inputguiwindow.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -15,7 +14,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+signals:
+    void guiInput();
+    void fileInput();
 private slots:
 
     void on_guiInput_clicked();
@@ -25,8 +26,7 @@ private slots:
     void on_exitApp_clicked();
 
 private:
-    InputWindow *fileUI;
-    InputGuiWindow *graficUI;
+
     Ui::MainWindow *ui;
 };
 

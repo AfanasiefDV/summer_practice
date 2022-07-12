@@ -19,7 +19,11 @@ SOURCES += main.cpp\
     inputwindow.cpp \
     inputguiwindow.cpp \
     parameterswindow.cpp \
-    dataga.cpp
+    dataga.cpp \
+    gawindow.cpp \
+    presenter.cpp \
+    model.cpp \
+    problemsolve.cpp
 
 HEADERS  += mainwindow.h \
     chromosome.h \
@@ -27,9 +31,15 @@ HEADERS  += mainwindow.h \
     inputwindow.h \
     inputguiwindow.h \
     parameterswindow.h \
-    dataga.h
+    dataga.h \
+    gawindow.h \
+    presenter.h \
+    model.h \
+    problemsolve.h \
+    datastruct.h
 
 FORMS    += mainwindow.ui \
     inputwindow.ui \
     inputguiwindow.ui \
-    parameterswindow.ui
+    parameterswindow.ui \
+    gawindow.ui

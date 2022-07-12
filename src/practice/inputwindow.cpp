@@ -14,7 +14,6 @@ InputWindow::~InputWindow()
 }
 void InputWindow::on_back_triggered()
 {
-    this->close();
     emit backToWindow();
 }
 
@@ -26,4 +25,12 @@ void InputWindow::on_exit_triggered()
 void InputWindow::on_about_triggered()
 {
 
+}
+
+void InputWindow::on_transtionPar2_clicked()
+{
+    emit toParamWindow();
+}
+QString InputWindow::getFilePath(){
+    return ui->fileEdit->text();
 }

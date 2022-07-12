@@ -11,11 +11,11 @@ void DataGA::setSizePopulation(unsigned int sizePopulation){
 }
 
 void DataGA::setCapacity(unsigned int capacity){
-    this->capacity;
+    this->capacity = capacity;
 }
 
 void DataGA::setSeed(unsigned int seed){
-    this->seed;
+    this->seed =seed;
 }
 
 void DataGA::setNumIndividualsSelection(unsigned int numIndividualsSelection){
@@ -27,7 +27,7 @@ void DataGA::setProbabilityMutation(float probabilityMutation){
 }
 
 void DataGA::setItems(std::vector<std::pair<unsigned int, unsigned int>> items){
-    this->items;
+    this->items = items;
 }
 
 unsigned int DataGA::getSizePopulation() const{
@@ -52,4 +52,23 @@ float DataGA::getProbabilityMutation() const{
 
 const std::vector<std::pair<unsigned int, unsigned int>>& DataGA::getItems() const{
     return this->items;
+}
+
+void DataGA::setQuantityPopulationEnd(unsigned int quantity){
+    quantityPopulationEnd = quantity;
+}
+
+void DataGA::setTypeEnd(int type){
+    if(type){
+        ends = typesEnd::constPopulation;
+    }else{
+        ends = typesEnd::Population;
+    }
+}
+
+unsigned int DataGA::getQuantityPopulationEnd() const{
+    return quantityPopulationEnd;
+}
+typesEnd DataGA::getTypeEnd() const{
+    return ends;
 }

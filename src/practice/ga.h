@@ -9,16 +9,20 @@
 
 class GA
 {
-    const DataGA& data;
+    const DataGA* data;
     std::vector<Chromosome> population, child;
     std::vector<int> inSelection;
     void pick();
 public:
-    GA(const DataGA& data);
+    GA(const DataGA* data);
+    GA();
+    std::pair<unsigned int, std::vector<unsigned int>> maxFitnes();
     void selection();
-    void mutation();
-    void crossing();
+    std::vector<std::pair<unsigned int, unsigned int>> mutation();
+    std::vector<std::pair<unsigned int, unsigned int>> crossing();
     void transfer();
+    std::vector<Chromosome> getPopulation();
+    std::vector<Chromosome> getChild();
 };
 
 #endif // GA_H
